@@ -1,1 +1,8 @@
-Elektra ~ e-commerce clothing brand website
+ # Elektra ~ e-commerce clothing brand website
+
+ 
+ 
+
+
+
+ 
