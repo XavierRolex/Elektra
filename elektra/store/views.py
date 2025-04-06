@@ -1,46 +1,49 @@
-from django.shortcuts import render, redirect
-from .models import Product, Wishlist, Cart
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from .models import Product, Wishlist, Cart
 
-#Viewing Wishlist
+# View Wishlist
 @login_required
-def wishlist (request):
-    wishlist = Wishlist.objects.filter(user=request.user) #retrieving wishlist of the user
-    return render(request, 'store/wishlist.html', {'wishlist': wishlist})
+def view_wishlist(request):
+    wishlist_items = Wishlist.objects.filter(user=request.user)
+    return render(request, 'store/wishlist.html', {'wishlist_items': wishlist_items})
 
-#Add to Wishlist
+# Add to Wishlist
 @login_required
 def add_to_wishlist(request, product_id):
-    product = Product.objects.get(id=product_id)
+    product = get_object_or_404(Product, id=product_id)
     Wishlist.objects.get_or_create(user=request.user, product=product)
-    return redirect('wishlist')
+    return redirect('view_wishlist')
 
-#Remove from Wishlist
+# Remove from Wishlist
 @login_required
-def del_from_wishlist(request, product_id):
-    product = Product.objects.get(id=product_id)
-    Wishlist.objects.filter(user=request.user, product=product).delete()
-    return redirect('wishlist')
+def remove_from_wishlist(request, product_id):
+    Wishlist.objects.filter(user=request.user, product_id=product_id).delete()
+    return redirect('view_wishlist')
 
-#Viewing Cart
+# View Cart
 @login_required
-def cart(request):
-    cart = Cart.objects.filter(user=request.user)
-    return render(request, 'store/cart.html', {'Cart Items': cart})
+def view_cart(request):
+    cart_items = Cart.objects.filter(user=request.user)
+    total = sum(item.product.price * item.quantity for item in cart_items)
+    return render(request, 'store/cart.html', {'cart_items': cart_items, 'total': total})
 
-#Add to Cart
+# Add to Cart
 @login_required
 def add_to_cart(request, product_id):
-    product = Product.objects.get(id=product_id)
-    Item, created = Cart.objects.get_or_create(user=request.user, product=product), defaults={'quantity': 1}
+    product = get_object_or_404(Product, id=product_id)
+    item, created = Cart.objects.get_or_create(
+        user=request.user,
+        product=product,
+        defaults={'quantity': 1}
+    )
     if not created:
-        Item.quantity += 1
-        Item.save()
-    return redirect('cart')
+        item.quantity += 1
+        item.save()
+    return redirect('view_cart')
 
-#Discard from Cart
+# Remove from Cart
 @login_required
-def disc_from_cart(request, product_id):
-    product = Product.objects.get(id=product_id)
-    Cart.objects.filter(user=request.user, product=product).delete()
-    return redirect('cart')
+def remove_from_cart(request, product_id):
+    Cart.objects.filter(user=request.user, product_id=product_id).delete()
+    return redirect('view_cart')

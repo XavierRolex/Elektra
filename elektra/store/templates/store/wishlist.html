@@ -1,0 +1,24 @@
+{% extends "store/base.html" %}
+{% block content %}
+<h2 class="mb-4">My Wishlist</h2>
+
+{% if wishlist_items %}
+    <div class="row">
+        {% for item in wishlist_items %}
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img src="{{ item.product.image.url }}" class="card-img-top" alt="{{ item.product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.product.name }}</h5>
+                    <p class="card-text">${{ item.product.price }}</p>
+                    <a href="{% url 'remove_from_wishlist' item.product.id %}" class="btn btn-danger btn-sm">Remove</a>
+                    <a href="{% url 'add_to_cart' item.product.id %}" class="btn btn-primary btn-sm">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>You have no items in your wishlist.</p>
+{% endif %}
+{% endblock %}
