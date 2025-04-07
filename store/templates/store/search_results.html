@@ -1,20 +1,25 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block content %}
-    <!-- Featured Products Section -->
-    <div class="container">
-        <h2>Featured Products</h2>
+<div class="container">
+    <h2>Search Results</h2>
+    {% if query %}
+        <p>Results for "{{ query }}":</p>
         <div class="products">
-            {% for product in featured_products %}
+            {% for product in results %}
             <div class="product-card">
                 <img src="{{ product.image.url }}" alt="{{ product.name }}">
                 <h3>{{ product.name }}</h3>
                 <p>{{ product.description }}</p>
                 <p><strong>Price: ${{ product.price }}</strong></p>
-                <a href="{% url 'add_to_cart' product.id %}" class="btn">Add to Cart</a>
             </div>
             {% endfor %}
         </div>
-    </div>
+        {% if not results %}
+            <p>No results found.</p>
+        {% endif %}
+    {% else %}
+        <p>Please enter a search query.</p>
+    {% endif %}
+</div>
 {% endblock %}

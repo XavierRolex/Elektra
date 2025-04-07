@@ -5,24 +5,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elektra</title>
-    <!-- filepath: f:\vs code my practice\Project Git\Elektra\templates\base.html -->
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>Welcome to Elektra</h1>
+        <div class="top-bar">
+            <p>Call Us Now: 01777702000</p>
+            <div class="user-options">
+                <a href="#">Log In</a>
+                <a href="#">My Wishlist</a>
+                <a href="#">Cart</a>
+            </div>
+        </div>
+
+        <div class="logo-search">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'images/logo.png' %}" alt="Elektra Logo" class="logo" />
+            </a>
+            <form action="{% url 'search' %}" method="get" class="search-bar">
+                <input type="text" name="q" placeholder="Search">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">Kids</a></li>
+                <li><a href="#">Accessories</a></li>
             </ul>
         </nav>
     </header>
+
+    <!-- Main Content -->
     <main>
         {% block content %}{% endblock %}
     </main>
+
+    <!-- Footer -->
     <footer>
+        <div class="footer-sections">
+            <div>
+                <h4>Contact Info</h4>
+                <p>hello@elektra.com.bd</p>
+            </div>
+            <div>
+                <h4>Know Us</h4>
+                <ul>
+                    <li><a href="#">Who We Are</a></li>
+                    <li><a href="#">Elektra Club</a></li>
+                    <li><a href="#">Join Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Shopping Information</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">How to Shop</a></li>
+                </ul>
+            </div>
+            <!-- New Service Information Section -->
+            <div>
+                <h4>Service Information</h4>
+                <ul>
+                    <li><a href="#">Return and Exchange</a></li>
+                    <li><a href="#">Shipping & Charges</a></li>
+                    <li><a href="#">Customer Service</a></li>
+                    <li><a href="#">Terms and Conditions</a></li>
+                    <li><a href="#">Store Locator</a></li>
+                </ul>
+            </div>
+        </div>
         <p>© 2025 Elektra. All rights reserved.</p>
     </footer>
 </body>
