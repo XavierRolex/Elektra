@@ -17,6 +17,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField()
+    image = models.ImageField(upload_to='products/', blank=True, null=True)  # Image field added
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -53,11 +54,11 @@ class Order(models.Model):
     class Meta:
         ordering = ['-created_at']  # Orders will be sorted by most recent first
 
-# UserProfile model
+# UserProfile model (Optional address and phone number fields)
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    address = models.TextField()
-    phone_number = models.CharField(max_length=15)
+    address = models.TextField(blank=True, null=True)  # Optional address
+    phone_number = models.CharField(max_length=15, blank=True, null=True)  # Optional phone number
 
     def __str__(self):
         return self.user.username

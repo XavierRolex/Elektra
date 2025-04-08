@@ -2,19 +2,45 @@
 {% load static %}
 
 {% block content %}
-    <!-- Featured Products Section -->
-    <div class="container">
-        <h2>Featured Products</h2>
-        <div class="products">
-            {% for product in featured_products %}
-            <div class="product-card">
-                <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                <h3>{{ product.name }}</h3>
-                <p>{{ product.description }}</p>
-                <p><strong>Price: ${{ product.price }}</strong></p>
-                <a href="{% url 'add_to_cart' product.id %}" class="btn">Add to Cart</a>
-            </div>
-            {% endfor %}
+
+<!-- Animated Logo Section -->
+<div class="logo-container" style="background-color: #1D002E; text-align: center; padding: 20px;">
+    <video src="{% static 'videos/logo_final.mp4' %}" autoplay loop muted style="width: 200px; height: auto;"></video>
+</div>
+
+<!-- Featured Products Section -->
+<div class="container">
+    <h2>Featured Products</h2>
+    <div class="products">
+        {% for product in featured_products %}
+        <div class="product-card">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <p><strong>Price: ${{ product.price }}</strong></p>
+            <a href="{% url 'add_to_cart' product.id %}" class="btn">Add to Cart</a>
         </div>
+        {% endfor %}
     </div>
+</div>
+
+<!-- Navigation Links to Features -->
+<div class="features-section" style="margin-top: 40px;">
+    <h2>Explore Our Features</h2>
+    <ul>
+        <li><a href="{% url 'search' %}">Search Products</a></li>
+        <li><a href="{% url 'checkout' %}">Checkout</a></li>
+        <li><a href="{% url 'track_order' order_id=1 %}">Order Tracking</a></li> <!-- Adjust the order ID dynamically -->
+        <li><a href="{% url 'cancel_order' order_id=1 %}">Order Cancellation</a></li> <!-- Adjust the order ID dynamically -->
+        <li><a href="{% url 'admin_dashboard' %}">Admin Dashboard</a></li>
+        <li><a href="{% url 'customer_reviews' %}">Customer Reviews</a></li>
+        {% if request.user.is_authenticated %}
+            <li><a href="{% url 'user_profile' user_id=request.user.id %}">User Profile</a></li>
+        {% else %}
+            <li><a href="#">User Profile</a></li>
+        {% endif %}
+        <li><a href="{% url 'customer_service' %}">Customer Service</a></li>
+    </ul>
+</div>
+
 {% endblock %}

@@ -1,10 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <h2>Customer Support</h2>
-    <p>If you have any questions, please contact us at:</p>
-    <p>Email: support@elektra.com</p>
-    <p>Phone: +8801777758704</p>
+<div class="container py-10">
+    <h2 class="text-2xl font-bold mb-6">Customer Service</h2>
+
+    <section class="mb-10">
+        <h3 class="text-xl font-semibold mb-2">Exchange Policy</h3>
+        <p>At Elektra, we offer exchanges within 7 days of purchase, provided that the product is unused and has the original receipt.</p>
+    </section>
+
+    <section class="mb-10">
+        <h3 class="text-xl font-semibold mb-2">Refund Policy</h3>
+        <p>Refunds are only applicable if the product has a manufacturing defect. Refunds are processed within 7 working days.</p>
+    </section>
+
+    <section class="mb-10">
+        <h3 class="text-xl font-semibold mb-2">Delivery Service</h3>
+        <p>We offer nationwide delivery in Bangladesh. Delivery time is 3-5 working days depending on location.</p>
+    </section>
+
+    <section class="mb-10">
+        <h3 class="text-xl font-semibold mb-2">Order Policy</h3>
+        <p>Orders once placed cannot be modified. Please review your cart before checking out.</p>
+    </section>
+
+    <section class="mb-10">
+        <h3 class="text-xl font-semibold mb-2">Complaint Policy</h3>
+        <p>For any complaints, please reach out to our Customer Support at <a href="mailto:support@elektra.com" class="text-blue-600 underline">support@elektra.com</a> or call +8801777758704.</p>
+    </section>
+
+    <section class="mb-10">
+        <h3 class="text-xl font-semibold mb-4">Frequently Asked Questions (FAQ)</h3>
+        <ul class="list-disc list-inside space-y-2">
+            <li><strong>How can I track my order?</strong> <br> After placing an order, you will receive a tracking link via SMS and email.</li>
+            <li><strong>What payment methods do you accept?</strong> <br> We accept Bkash, Nagad, Visa, Mastercard, and Cash on Delivery.</li>
+            <li><strong>Can I return sale items?</strong> <br> Sale items are non-returnable and non-refundable.</li>
+        </ul>
+    </section>
+
+    <div class="mt-12">
+        <p>If you have any other questions, feel free to contact us!</p>
+        <p>Email: <a href="mailto:support@elektra.com" class="text-blue-600 underline">support@elektra.com</a></p>
+        <p>Phone: +8801777758704</p>
+    </div>
 </div>
 {% endblock %}
