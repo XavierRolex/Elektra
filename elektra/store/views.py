@@ -1,10 +1,35 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Product, Wishlist, Cart
+#Homepage
+def home(request):
+    """
+    It shows the homepage of the store.
+
+    args:
+        request (HttpRequest): The HTTP request object. It's a object that is used to request data from the server.
+
+    Returns:
+        HttpResponse: The rendered homepage template.
+    """
+    return render(request, 'store/home.html')
 
 # View Wishlist
 @login_required
 def view_wishlist(request):
+    """
+    Display all wishlist items for the logged-in user.
+
+    Args:
+        request (HttpRequest): The incoming HTTP request.
+
+    Attributes:
+        user (ForeignKey): The user who owns the wishlist.
+
+    Returns:
+        HttpResponse: Rendered wishlist page with the user's wishlist items.
+        wishlist_items (QuerySet): All wishlist items for the logged-in user.
+    """
     wishlist_items = Wishlist.objects.filter(user=request.user)
     return render(request, 'store/wishlist.html', {'wishlist_items': wishlist_items})
 
