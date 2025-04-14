@@ -15,7 +15,7 @@ def home(request):
     return render(request, 'store/home.html')
 
 # View Wishlist
-@login_required
+#@login_required
 def view_wishlist(request):
     """
     Display all wishlist items for the logged-in user.
@@ -34,7 +34,7 @@ def view_wishlist(request):
     return render(request, 'store/wishlist.html', {'wishlist_items': wishlist_items})
 
 # Add to Wishlist
-@login_required
+#@login_required
 def add_to_wishlist(request, product_id):
     """
     Add products to the user's wishlist.
@@ -55,7 +55,7 @@ def add_to_wishlist(request, product_id):
     return redirect('view_wishlist')
 
 # Remove from Wishlist
-@login_required
+#@login_required
 def remove_from_wishlist(request, product_id):
     """
     Remove products from the user's wishlist.
@@ -75,7 +75,7 @@ def remove_from_wishlist(request, product_id):
     return redirect('view_wishlist')
 
 # View Cart
-@login_required
+#@login_required
 def view_cart(request):
     """
     Display all cart items for the logged-in user.
@@ -96,7 +96,7 @@ def view_cart(request):
     return render(request, 'store/cart.html', {'cart_items': cart_items, 'total': total})
 
 # Add to Cart
-@login_required
+#@login_required
 def add_to_cart(request, product_id):
     """
     Add products to the user's cart.
@@ -125,7 +125,7 @@ def add_to_cart(request, product_id):
     return redirect('view_cart')
 
 # Remove from Cart
-@login_required
+#@login_required
 def remove_from_cart(request, product_id):
     """
     Remove products from the user's cart.
