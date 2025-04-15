@@ -2,15 +2,26 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse
 from .models import Product, Wishlist
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 class WishlistTests(TestCase):
     def setUp(self):
-        # Set up test user, product, and client
+        # test (user, product, and client)
         self.client = Client()
         self.user = User.objects.create_user(username='testuser', password='testpass')
-        self.product = Product.objects.create(name='Test Product', price=10.0, description='A cool product')
 
-        # Log the user in
+        # Creating a dummy image file to fix ImageField error
+        image = SimpleUploadedFile(name='test_image.jpg', content=b'', content_type='image/jpeg')
+
+        # Creating a product with an image
+        self.product = Product.objects.create(
+            name='Test Product',
+            price=10.0,
+            description='A cool product',
+            image=image
+        )
+
+        # User log in
         self.client.force_login(self.user)
 
     def test_add_to_wishlist(self):
