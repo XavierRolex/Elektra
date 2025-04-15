@@ -29,14 +29,14 @@
             </form>
         </div>
 
+        <!-- Navigation Bar with Clickable Features -->
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="#">Men</a></li>
-                <li><a href="#">Women</a></li>
-                <li><a href="#">Kids</a></li>
-                <li><a href="#">Accessories</a></li>
-                <li><a href="{% url 'customer_service' %}">Customer Service</a></li>
+                <li><a href="{% url 'men' %}">Men</a></li>
+                <li><a href="{% url 'women' %}">Women</a></li>
+                <li><a href="{% url 'kids' %}">Kids</a></li>
+                <li><a href="{% url 'accessories' %}">Accessories</a></li>
             </ul>
         </nav>
     </header>
@@ -69,13 +69,13 @@
                     <li><a href="#">How to Shop</a></li>
                 </ul>
             </div>
-            <!-- New Service Information Section -->
             <div>
                 <h4>Service Information</h4>
                 <ul>
                     <li><a href="#">Return and Exchange</a></li>
                     <li><a href="#">Shipping & Charges</a></li>
-                    <li><a href="#">Customer Service</a></li>
+                    <li><a href="{% url 'customer_support' %}">Customer Service</a></li>
+
                     <li><a href="#">Terms and Conditions</a></li>
                     <li><a href="#">Store Locator</a></li>
                 </ul>

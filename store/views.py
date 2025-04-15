@@ -93,3 +93,15 @@ def user_profile(request, user_id):
 def customer_support(request):
     """Display the customer support page."""
     return render(request, 'store/customer_support.html')
+
+def men(request):
+    return render(request, 'store/men.html')
+
+def women(request):
+    return render(request, 'store/women.html')
+
+def kids(request):
+    return render(request, 'store/kids.html')
+
+def accessories(request):
+    return render(request, 'store/accessories.html')

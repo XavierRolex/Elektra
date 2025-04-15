@@ -1,7 +1,8 @@
-from django.urls import path
+from django.urls import path 
 from .views import (
     home, view_cart, search, checkout, track_order, cancel_order,
-    admin_dashboard, customer_reviews, user_profile, customer_support
+    admin_dashboard, customer_reviews, user_profile, customer_support,
+    men, women, kids, accessories
 )
 
 urlpatterns = [
@@ -14,5 +15,9 @@ urlpatterns = [
     path('admin-dashboard/', admin_dashboard, name='admin_dashboard'),
     path('customer-reviews/', customer_reviews, name='customer_reviews'),
     path('user-profile/<int:user_id>/', user_profile, name='user_profile'),
-    path('customer-service/', customer_support, name='customer_service'),
+    path('customer-support/', customer_support, name='customer_support'),  # Corrected this line
+    path('men/', men, name='men'),
+    path('women/', women, name='women'),
+    path('kids/', kids, name='kids'),
+    path('accessories/', accessories, name='accessories'),
 ]

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Men's Collection</h2>
+<div class="product-grid">
+    {% for product in products %}
+        <div class="product-card">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <h4>{{ product.name }}</h4>
+            <p>৳ {{ product.price }}</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
