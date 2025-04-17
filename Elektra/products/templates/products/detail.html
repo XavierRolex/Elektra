@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid">
+        {% endif %}
+    </div>
+    <div class="col-md-6">
+        <h1>{{ product.name }}</h1>
+        <p class="text-muted">{{ product.category.name }}</p>
+        <h3 class="text-primary">${{ product.price }}</h3>
+        <p>{{ product.description }}</p>
+        <p>
+            {% if product.is_available %}
+            <span class="badge bg-success">In Stock: {{ product.stock }}</span>
+            {% else %}
+            <span class="badge bg-danger">Out of Stock</span>
+            {% endif %}
+        </p>
+        <a href="{% url 'products:product_list' %}" class="btn btn-secondary">Back to Products</a>
+    </div>
+</div>
+{% endblock %}

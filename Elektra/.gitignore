@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+develop-eggs/
+.eggs/
+pip-wheel-metadata/
+*.manifest
+*.spec
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# Local env files
+.env
+.env.*
+*.env
+
+# VSCode, PyCharm, etc.
+.vscode/
+.idea/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Mac/Linux/Windows system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+desktop.ini
+
+# Migrations (optional – comment out if you want to keep them in version control)
+*/migrations/__pycache__/
+*/migrations/*.pyc
+# */migrations/*.py  <-- Uncomment if you want to ignore migration files completely
+
+# MyPy, coverage, and testing
+.mypy_cache/
+.cover
