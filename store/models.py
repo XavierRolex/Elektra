@@ -1,11 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Category model
 class Category(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(default=timezone.now)
+  # ✅ Replaced auto_now_add
 
     def __str__(self):
         return self.name
@@ -25,10 +27,10 @@ class Product(models.Model):
 
 # CartItem model
 class CartItem(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='cart_items')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='cart_items', null=True)  # ✅ Temporarily nullable
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='cart_items')
     quantity = models.PositiveIntegerField()
-    added_at = models.DateTimeField(auto_now_add=True)
+    added_at = models.DateTimeField(default=timezone.now)  # ✅ Default for migration fix
 
     def total_price(self):
         return self.product.price * self.quantity
@@ -52,13 +54,13 @@ class Order(models.Model):
         return f"Order {self.id} - {self.status}"
 
     class Meta:
-        ordering = ['-created_at']  # Orders will be sorted by most recent first
+        ordering = ['-created_at']
 
 # UserProfile model (Optional address and phone number fields)
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    address = models.TextField(blank=True, null=True)  # Optional address
-    phone_number = models.CharField(max_length=15, blank=True, null=True)  # Optional phone number
+    address = models.TextField(blank=True, null=True)
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
 
     def __str__(self):
         return self.user.username
@@ -75,4 +77,4 @@ class CustomerReview(models.Model):
         return f"Review by {self.user.username} for {self.product.name}"
 
     class Meta:
-        ordering = ['-created_at']  # Reviews will be sorted by most recent first
+        ordering = ['-created_at']
