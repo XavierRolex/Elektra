@@ -17,6 +17,7 @@ Elektra is a clothing-focused e-commerce platform developed using Python and the
 -  Category List for Easy Browsing  
 -  User Profiles with Purchase History  
 -  Customer Support Integration
+-  Notification Alert 
 
 ---
 
